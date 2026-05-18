@@ -7,13 +7,17 @@ export function resolvePath(path: string) {
     return path;
   }
 
-  // Get the base URL configured in astro.config.mjs (defaults to '/')
-  const base = import.meta.env.BASE_URL;
+  // Get the base URL configured in astro.config.mjs
+  let base = import.meta.env.BASE_URL;
   
-  // If the path starts with a slash, strip it and append to base
-  // (Base URL is guaranteed to end with a slash by Astro)
+  // Ensure the base URL does not have a trailing slash for consistent concatenation
+  if (base.endsWith('/')) {
+    base = base.slice(0, -1);
+  }
+  
+  // If the path starts with a slash, simply append it to the base
   if (path.startsWith('/')) {
-    return `${base}${path.slice(1)}`;
+    return `${base}${path}`;
   }
   
   return path;
