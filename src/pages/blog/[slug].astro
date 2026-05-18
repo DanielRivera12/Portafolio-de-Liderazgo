@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, render, getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Badge from '../../components/Badge.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
@@ -15,6 +15,21 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
+
+// Resolve the author reference
+const author = await getEntry(entry.data.author);
+
+// Related posts logic
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(p => p.id !== entry.id) // Exclude current post
+  .map(p => {
+    const sharedTags = p.data.tags.filter(tag => entry.data.tags.includes(tag));
+    return { ...p, sharedCount: sharedTags.length };
+  })
+  .filter(p => p.sharedCount > 0)
+  .sort((a, b) => b.sharedCount - a.sharedCount || b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 
 // Register custom MDX components here
 const mdxComponents = {
@@ -41,10 +56,10 @@ const mdxComponents = {
             })}
           </time>
           <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-700"></span>
-          <span class="text-slate-900 dark:text-slate-300 flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            {entry.data.author}
-          </span>
+          <a href={author?.data.twitter} class="text-slate-900 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 flex items-center gap-2 transition-colors">
+            <img src={author?.data.avatar} alt={author?.data.name} class="w-6 h-6 rounded-full" />
+            {author?.data.name}
+          </a>
         </div>
         
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold text-slate-900 dark:text-white mb-8 leading-tight tracking-tight">
@@ -65,12 +80,28 @@ const mdxComponents = {
         
         <!-- Left Sidebar (Social Share / Meta - Placeholder for now) -->
         <div class="hidden lg:block sticky top-24 self-start">
-           <a href={resolvePath('/blog')} class="text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors inline-flex items-center gap-2">
+           <a href={resolvePath('/blog')} class="text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors inline-flex items-center gap-2 mb-8">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Back to overview
           </a>
+
+          <div class="space-y-6">
+            <div class="p-6 glass-panel rounded-2xl">
+              <h4 class="text-xs font-bold font-heading text-slate-900 dark:text-white uppercase tracking-widest mb-4">About Author</h4>
+              <div class="flex items-center gap-3 mb-3">
+                <img src={author?.data.avatar} alt={author?.data.name} class="w-10 h-10 rounded-full" />
+                <div>
+                  <div class="text-sm font-bold text-slate-900 dark:text-white">{author?.data.name}</div>
+                  <div class="text-xs text-slate-500 dark:text-slate-400">{author?.data.role}</div>
+                </div>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                {author?.data.bio}
+              </p>
+            </div>
+          </div>
         </div>
 
         <!-- Markdown Content -->
@@ -86,6 +117,27 @@ const mdxComponents = {
         <TableOfContents headings={headings} />
 
       </div>
+
+      <!-- Related Posts Section -->
+      {relatedPosts.length > 0 && (
+        <div class="mt-32 pt-16 border-t border-slate-200 dark:border-slate-800 reveal-on-scroll">
+          <h3 class="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-8">Related Articles</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {relatedPosts.map(post => (
+              <a href={resolvePath(`/blog/${post.id}`)} class="group block">
+                <div class="p-6 rounded-2xl glass-panel hover-glow transition-all">
+                  <time class="text-xs text-slate-500 mb-2 block">{post.data.pubDate.toLocaleDateString()}</time>
+                  <h4 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary-600 transition-colors mb-2">{post.data.title}</h4>
+                  <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">{post.data.description}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </article>
+</BaseLayout>
     </div>
   </article>
 </BaseLayout>
