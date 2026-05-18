@@ -6,8 +6,9 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://farrosfr.github.io',
-  base: '/zenith',
+  site: 'https://zenix.farros.co',
+  base: '/',
+  trailingSlash: 'always',
 
   vite: {
     plugins: [tailwindcss()]

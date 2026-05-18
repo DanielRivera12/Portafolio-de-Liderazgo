@@ -1,7 +1,6 @@
-# Zenith: Astro Micro-SaaS Theme Plan
+# Zenix: Astro Micro-SaaS Theme Plan
 
-## 1. Project Overview
-**Zenith** is a high-converting, performance-focused Astro theme designed for Micro-SaaS products, indie hackers, and software startups. It leverages Astro's static site generation and component-driven architecture to deliver a blazing-fast user experience with minimal client-side JavaScript.
+**Zenix** is a high-converting, performance-focused Astro theme designed for Micro-SaaS products, indie hackers, and software startups. It leverages Astro's static site generation and component-driven architecture to deliver a blazing-fast user experience with minimal client-side JavaScript.
 
 **Target Audience:** SaaS founders, developers launching products.
 **Core Philosophy:** Speed, conversion, and ease of customization.

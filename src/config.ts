@@ -1,12 +1,12 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const SITE_TITLE = 'Zenith';
+export const SITE_TITLE = 'Zenix';
 export const SITE_DESCRIPTION = 'High-converting, performance-focused Astro theme for Micro-SaaS products.';
-export const SITE_URL = 'https://farrosfr.github.io/zenith'; // Replace with your domain
+export const SITE_URL = 'https://zenix.farros.co'; // Replace with your domain
 
 // Brand Settings
-export const BRAND_NAME = 'Zenith';
+export const BRAND_NAME = 'Zenix';
 export const BRAND_LOGO_TEXT = 'Z';
 
 // Social Links
