@@ -1,0 +1,58 @@
+---
+const testimonials = [
+  {
+    quote: "Zenith saved me weeks of development time. I was able to focus entirely on my product's core features instead of tweaking landing page CSS.",
+    author: "Sarah Jenkins",
+    role: "Founder, DataFlow",
+    avatar: "https://i.pravatar.cc/150?u=sarah"
+  },
+  {
+    quote: "The cleanest Astro theme I've used. The code is structured beautifully, and the Lighthouse scores are genuinely 100 straight out of the box.",
+    author: "Marcus Chen",
+    role: "Indie Hacker",
+    avatar: "https://i.pravatar.cc/150?u=marcus"
+  },
+  {
+    quote: "Converted my old React landing page to Zenith in a day. The bundle size dropped by 90% and my conversion rate went up by 15%. Highly recommend.",
+    author: "Elena Rodriguez",
+    role: "CEO, Streamline",
+    avatar: "https://i.pravatar.cc/150?u=elena"
+  }
+];
+---
+
+<section id="testimonials" class="py-24 bg-slate-50 border-y border-slate-200">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Loved by Founders</h2>
+      <p class="text-lg text-slate-600">
+        Don't just take our word for it. See what others are building with Zenith.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {testimonials.map(t => (
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col h-full">
+          <!-- Rating stars -->
+          <div class="flex gap-1 text-accent-500 mb-6">
+            {[1, 2, 3, 4, 5].map(() => (
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            ))}
+          </div>
+          
+          <blockquote class="text-slate-700 text-lg mb-8 flex-grow">
+            "{t.quote}"
+          </blockquote>
+          
+          <div class="flex items-center gap-4">
+            <img src={t.avatar} alt={t.author} class="w-12 h-12 rounded-full border-2 border-slate-100" loading="lazy" />
+            <div>
+              <div class="font-bold text-slate-900">{t.author}</div>
+              <div class="text-sm text-slate-500">{t.role}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

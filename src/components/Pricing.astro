@@ -1,0 +1,117 @@
+---
+import Button from './Button.astro';
+import Badge from './Badge.astro';
+---
+
+<section id="pricing" class="py-24 bg-white">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Simple, transparent pricing</h2>
+      <p class="text-lg text-slate-600 mb-8">
+        No hidden fees. No surprise charges. Just choose the plan that works best for you.
+      </p>
+
+      <!-- Toggle -->
+      <div class="flex items-center justify-center gap-3">
+        <span class="text-sm font-medium text-slate-900" id="monthly-label">Monthly</span>
+        <button type="button" id="pricing-toggle" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-slate-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2" role="switch" aria-checked="false">
+          <span class="sr-only">Use setting</span>
+          <span aria-hidden="true" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out translate-x-0" id="toggle-thumb"></span>
+        </button>
+        <span class="text-sm font-medium text-slate-500" id="annual-label">
+          Annually <span class="text-xs text-green-600 font-bold ml-1">Save 20%</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <!-- Starter Plan -->
+      <div class="border border-slate-200 rounded-2xl p-8 shadow-sm bg-white">
+        <h3 class="text-lg font-bold text-slate-900 mb-2">Starter</h3>
+        <p class="text-slate-500 text-sm mb-6">Perfect for side projects and indie hackers.</p>
+        <div class="mb-6">
+          <span class="text-4xl font-bold text-slate-900" data-monthly="$19" data-annual="$15">$19</span>
+          <span class="text-slate-500">/mo</span>
+        </div>
+        <Button variant="outline" class="w-full mb-8">Get Started</Button>
+        <ul class="space-y-4 text-sm text-slate-600">
+          <li class="flex gap-3"><svg class="h-5 w-5 text-primary-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Up to 1,000 users</li>
+          <li class="flex gap-3"><svg class="h-5 w-5 text-primary-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Basic analytics</li>
+          <li class="flex gap-3"><svg class="h-5 w-5 text-primary-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Community support</li>
+        </ul>
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="border-2 border-primary-500 rounded-2xl p-8 shadow-xl bg-white relative transform md:-translate-y-4">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <Badge variant="primary" class="px-3 py-1 font-bold">Most Popular</Badge>
+        </div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">Pro</h3>
+        <p class="text-slate-500 text-sm mb-6">For growing startups that need more power.</p>
+        <div class="mb-6">
+          <span class="text-4xl font-bold text-slate-900" data-monthly="$49" data-annual="$39">$49</span>
+          <span class="text-slate-500">/mo</span>
+        </div>
+        <Button variant="primary" class="w-full mb-8">Get Started</Button>
+        <ul class="space-y-4 text-sm text-slate-600">
+          <li class="flex gap-3"><svg class="h-5 w-5 text-primary-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Up to 10,000 users</li>
+          <li class="flex gap-3"><svg class="h-5 w-5 text-primary-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Advanced analytics</li>
+          <li class="flex gap-3"><svg class="h-5 w-5 text-primary-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Priority email support</li>
+          <li class="flex gap-3"><svg class="h-5 w-5 text-primary-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Custom domain</li>
+        </ul>
+      </div>
+
+      <!-- Enterprise Plan -->
+      <div class="border border-slate-200 rounded-2xl p-8 shadow-sm bg-white">
+        <h3 class="text-lg font-bold text-slate-900 mb-2">Enterprise</h3>
+        <p class="text-slate-500 text-sm mb-6">Custom solutions for large scale operations.</p>
+        <div class="mb-6">
+          <span class="text-4xl font-bold text-slate-900" data-monthly="$99" data-annual="$79">$99</span>
+          <span class="text-slate-500">/mo</span>
+        </div>
+        <Button variant="outline" class="w-full mb-8">Contact Sales</Button>
+        <ul class="space-y-4 text-sm text-slate-600">
+          <li class="flex gap-3"><svg class="h-5 w-5 text-primary-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Unlimited users</li>
+          <li class="flex gap-3"><svg class="h-5 w-5 text-primary-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Custom reporting</li>
+          <li class="flex gap-3"><svg class="h-5 w-5 text-primary-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> 24/7 phone support</li>
+          <li class="flex gap-3"><svg class="h-5 w-5 text-primary-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> SLA Guarantee</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const toggle = document.getElementById('pricing-toggle');
+  const thumb = document.getElementById('toggle-thumb');
+  const monthlyLabel = document.getElementById('monthly-label');
+  const annualLabel = document.getElementById('annual-label');
+  const prices = document.querySelectorAll('[data-monthly]');
+
+  let isAnnual = false;
+
+  if (toggle && thumb && monthlyLabel && annualLabel) {
+    toggle.addEventListener('click', () => {
+      isAnnual = !isAnnual;
+      
+      // Update toggle visual state
+      if (isAnnual) {
+        toggle.classList.replace('bg-slate-200', 'bg-primary-600');
+        thumb.classList.replace('translate-x-0', 'translate-x-5');
+        monthlyLabel.classList.replace('text-slate-900', 'text-slate-500');
+        annualLabel.classList.replace('text-slate-500', 'text-slate-900');
+      } else {
+        toggle.classList.replace('bg-primary-600', 'bg-slate-200');
+        thumb.classList.replace('translate-x-5', 'translate-x-0');
+        monthlyLabel.classList.replace('text-slate-500', 'text-slate-900');
+        annualLabel.classList.replace('text-slate-900', 'text-slate-500');
+      }
+
+      // Update prices
+      prices.forEach(priceEl => {
+        const value = isAnnual ? priceEl.getAttribute('data-annual') : priceEl.getAttribute('data-monthly');
+        if (value) priceEl.textContent = value;
+      });
+    });
+  }
+</script>
