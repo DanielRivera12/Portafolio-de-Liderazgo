@@ -1,6 +1,7 @@
 ---
 import Button from './Button.astro';
 import Badge from './Badge.astro';
+import { resolvePath } from '../utils/navigation';
 ---
 
 <section class="relative pt-32 pb-32 lg:pt-48 lg:pb-40 overflow-hidden">
@@ -27,7 +28,7 @@ import Badge from './Badge.astro';
     </p>
     
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
-      <Button href="/pricing" variant="primary" size="lg" class="w-full sm:w-auto text-lg px-8 py-4 shadow-xl shadow-primary-500/20">
+      <Button href={resolvePath('/pricing')} variant="primary" size="lg" class="w-full sm:w-auto text-lg px-8 py-4 shadow-xl shadow-primary-500/20">
         Start Building Now
       </Button>
       <Button href="#features" variant="outline" size="lg" class="w-full sm:w-auto text-lg px-8 py-4 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm">

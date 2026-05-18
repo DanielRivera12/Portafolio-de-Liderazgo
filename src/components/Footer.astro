@@ -1,5 +1,6 @@
 ---
 import { FOOTER_LINKS, BRAND_NAME, BRAND_LOGO_TEXT, SITE_DESCRIPTION, SOCIAL_LINKS } from '../config';
+import { resolvePath } from '../utils/navigation';
 ---
 
 <footer class="bg-white border-t border-slate-200 pt-16 pb-8">
@@ -7,7 +8,7 @@ import { FOOTER_LINKS, BRAND_NAME, BRAND_LOGO_TEXT, SITE_DESCRIPTION, SOCIAL_LIN
     <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-12">
       <!-- Brand & Newsletter -->
       <div class="md:col-span-1">
-        <a href="/" class="flex items-center gap-2 mb-4">
+        <a href={resolvePath('/')} class="flex items-center gap-2 mb-4">
           <div class="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
             <span class="text-white font-bold text-xl leading-none">{BRAND_LOGO_TEXT}</span>
           </div>
@@ -31,7 +32,7 @@ import { FOOTER_LINKS, BRAND_NAME, BRAND_LOGO_TEXT, SITE_DESCRIPTION, SOCIAL_LIN
           <ul class="space-y-3">
             {group.links.map(link => (
               <li>
-                <a href={link.href} class="text-sm text-slate-600 hover:text-primary-600 transition-colors">
+                <a href={resolvePath(link.href)} class="text-sm text-slate-600 hover:text-primary-600 transition-colors">
                   {link.label}
                 </a>
               </li>

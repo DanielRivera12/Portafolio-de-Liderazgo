@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Badge from '../../components/Badge.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import Callout from '../../components/mdx/Callout.astro';
+import { resolvePath } from '../../utils/navigation';
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
@@ -64,7 +65,7 @@ const mdxComponents = {
         
         <!-- Left Sidebar (Social Share / Meta - Placeholder for now) -->
         <div class="hidden lg:block sticky top-24 self-start">
-           <a href="/blog" class="text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors inline-flex items-center gap-2">
+           <a href={resolvePath('/blog')} class="text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors inline-flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
