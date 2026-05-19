@@ -32,11 +32,11 @@ const config = {
 const activeConfig = config[type];
 ---
 
-<div class={`my-6 px-6 py-5 border rounded-2xl flex gap-4 ${activeConfig.classes}`}>
-  <div class={`mt-0.5 flex-shrink-0 ${activeConfig.iconColor}`} set:html={activeConfig.icon} />
-  <div>
-    {title && <h4 class="font-bold font-heading m-0 mb-1">{title}</h4>}
-    <div class="[&>p]:m-0 text-sm opacity-90">
+<div class={`not-prose mx-auto my-10 w-full max-w-2xl px-6 py-6 border rounded-2xl flex items-start gap-4 shadow-sm ${activeConfig.classes}`}>
+  <div class={`mt-1 flex-shrink-0 ${activeConfig.iconColor}`} set:html={activeConfig.icon} />
+  <div class="min-w-0">
+    {title && <h4 class="font-bold font-heading m-0 mb-2 leading-snug">{title}</h4>}
+    <div class="[&>p]:m-0 text-sm leading-6 opacity-90">
       <slot />
     </div>
   </div>

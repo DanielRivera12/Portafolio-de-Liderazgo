@@ -18,6 +18,16 @@ const { Content, headings } = await render(entry);
 
 // Resolve the author reference
 const author = await getEntry(entry.data.author);
+const authorName = author?.data.name ?? 'Zenix Author';
+const authorRole = author?.data.role ?? 'Contributor';
+const authorAvatar = author?.data.avatar;
+const authorInitials = authorName
+  .split(/\s+/)
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((part) => part[0])
+  .join('')
+  .toUpperCase();
 
 // Related posts logic
 const allPosts = await getCollection('blog');
@@ -47,7 +57,7 @@ const mdxComponents = {
       
       <!-- Header Section -->
       <div class="mb-16 text-center max-w-4xl mx-auto reveal-on-scroll">
-        <div class="flex items-center justify-center gap-3 mb-6 text-sm font-medium text-slate-500 dark:text-slate-400">
+        <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 mb-6 text-sm font-medium leading-6 text-slate-500 dark:text-slate-400">
           <time datetime={entry.data.pubDate.toISOString()}>
             {entry.data.pubDate.toLocaleDateString('en-US', {
               year: 'numeric',
@@ -56,9 +66,14 @@ const mdxComponents = {
             })}
           </time>
           <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-700"></span>
-          <a href={author?.data.twitter} class="text-slate-900 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 flex items-center gap-2 transition-colors">
-            <img src={author?.data.avatar} alt={author?.data.name} class="w-6 h-6 rounded-full" />
-            {author?.data.name}
+          <a href={author?.data.twitter} class="min-w-0 text-slate-900 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 inline-flex items-center gap-2 transition-colors">
+            <span class="relative inline-flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary-100 text-[10px] font-bold text-primary-700 ring-1 ring-primary-200 dark:bg-primary-900/40 dark:text-primary-300 dark:ring-primary-800">
+              <span>{authorInitials}</span>
+              {authorAvatar && (
+                <img src={authorAvatar} alt="" class="absolute inset-0 h-full w-full rounded-full object-cover" loading="lazy" onerror="this.remove()" />
+              )}
+            </span>
+            <span class="leading-6">{authorName}</span>
           </a>
         </div>
         
@@ -89,12 +104,17 @@ const mdxComponents = {
 
           <div class="space-y-6">
             <div class="p-6 glass-panel rounded-2xl">
-              <h4 class="text-xs font-bold font-heading text-slate-900 dark:text-white uppercase tracking-widest mb-4">About Author</h4>
-              <div class="flex items-center gap-3 mb-3">
-                <img src={author?.data.avatar} alt={author?.data.name} class="w-10 h-10 rounded-full" />
-                <div>
-                  <div class="text-sm font-bold text-slate-900 dark:text-white">{author?.data.name}</div>
-                  <div class="text-xs text-slate-500 dark:text-slate-400">{author?.data.role}</div>
+              <h4 class="text-xs font-bold font-heading text-slate-900 dark:text-white uppercase tracking-widest mb-5">About Author</h4>
+              <div class="flex items-start gap-3 mb-4">
+                <span class="relative inline-flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary-100 text-sm font-bold text-primary-700 ring-1 ring-primary-200 dark:bg-primary-900/40 dark:text-primary-300 dark:ring-primary-800">
+                  <span>{authorInitials}</span>
+                  {authorAvatar && (
+                    <img src={authorAvatar} alt="" class="absolute inset-0 h-full w-full rounded-full object-cover" loading="lazy" onerror="this.remove()" />
+                  )}
+                </span>
+                <div class="min-w-0 pt-0.5">
+                  <div class="text-sm font-bold leading-snug text-slate-900 dark:text-white break-words">{authorName}</div>
+                  <div class="mt-0.5 text-xs leading-snug text-slate-500 dark:text-slate-400">{authorRole}</div>
                 </div>
               </div>
               <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -135,9 +155,6 @@ const mdxComponents = {
           </div>
         </div>
       )}
-    </div>
-  </article>
-</BaseLayout>
     </div>
   </article>
 </BaseLayout>
