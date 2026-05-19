@@ -94,6 +94,20 @@ Zenix builds to a static site and can be deployed to Vercel, Netlify, Cloudflare
 
 For production, update `site` in `astro.config.mjs` to match your domain.
 
+### Cloudflare Pages
+
+When importing this GitHub repository into Cloudflare Pages, use:
+
+```text
+Framework preset: Astro
+Build command: npm run build
+Build output directory: dist
+Root directory: /
+Node.js version: 22.12.0 or newer
+```
+
+The repository includes `wrangler.toml` with `pages_build_output_dir = "dist"` for Cloudflare Pages compatibility.
+
 ## Theme Submission Notes
 
 This repository is public, uses public npm dependencies, and includes setup documentation for new users. Preview images for the Astro theme directory should be 16:9, at least 1280px wide, and less than 5MB combined.
