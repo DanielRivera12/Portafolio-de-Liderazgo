@@ -87,9 +87,21 @@ import { resolvePath } from '../utils/navigation';
         const response = await fetch(`${resolvePath}search-index.json`);
         window.__zenixSearchIndex = await response.json();
         window.__zenixSearchLoaded = true;
+
+        const query = input.value.toLowerCase().trim();
+        if (query) {
+          renderResults(getMatches(query));
+        }
       } catch (err) {
         console.error('Failed to load search index:', err);
       }
+    }
+
+    function getMatches(query) {
+      return window.__zenixSearchIndex.filter(item => 
+        item.title.toLowerCase().includes(query) || 
+        item.description.toLowerCase().includes(query)
+      );
     }
 
     function togglePalette() {
@@ -141,12 +153,7 @@ import { resolvePath } from '../utils/navigation';
         return;
       }
 
-      const matches = window.__zenixSearchIndex.filter(item => 
-        item.title.toLowerCase().includes(query) || 
-        item.description.toLowerCase().includes(query)
-      );
-
-      renderResults(matches);
+      renderResults(getMatches(query));
     });
 
     function renderResults(matches) {

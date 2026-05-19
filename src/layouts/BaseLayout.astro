@@ -30,24 +30,43 @@ const { title, description = SITE_DESCRIPTION } = Astro.props;
 
     <ClientRouter />
 
-    <!-- Dark Mode initialization script to prevent FOUC -->
-    <script is:inline>
-      const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme');
+    <!-- Dark Mode initialization script to prevent FOUC and preserve theme across routes -->
+    <script is:inline data-astro-rerun>
+      (() => {
+        const getPreferredTheme = () => {
+          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+          }
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+          }
+          return 'light';
+        };
+
+        const applyTheme = (theme, root = document.documentElement) => {
+          root.classList.toggle('dark', theme === 'dark');
+          window.localStorage.setItem('theme', theme);
+        };
+
+        applyTheme(getPreferredTheme());
+
+        if (!window.__zenixThemeBound) {
+          window.__zenixThemeBound = true;
+
+          document.addEventListener('astro:before-swap', (event) => {
+            const theme = localStorage.getItem('theme') || getPreferredTheme();
+            event.newDocument.documentElement.classList.toggle('dark', theme === 'dark');
+          });
+
+          document.addEventListener('astro:after-swap', () => {
+            applyTheme(localStorage.getItem('theme') || getPreferredTheme());
+          });
+
+          document.addEventListener('astro:page-load', () => {
+            applyTheme(localStorage.getItem('theme') || getPreferredTheme());
+          });
         }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
-        }
-        return 'light';
       })();
-    
-      if (theme === 'light') {
-        document.documentElement.classList.remove('dark');
-      } else {
-        document.documentElement.classList.add('dark');
-      }
-      window.localStorage.setItem('theme', theme);
     </script>
   </head>
   <body class="flex flex-col min-h-screen bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-[#09090b] dark:text-slate-100">

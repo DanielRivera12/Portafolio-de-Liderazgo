@@ -93,6 +93,11 @@ import { resolvePath } from '../utils/navigation';
 
 <script>
   function setupTheme() {
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'dark' || storedTheme === 'light') {
+      document.documentElement.classList.toggle('dark', storedTheme === 'dark');
+    }
+
     function updateIcons() {
       const isDark = document.documentElement.classList.contains('dark');
       document.querySelectorAll('[data-theme-toggle]').forEach((button) => {

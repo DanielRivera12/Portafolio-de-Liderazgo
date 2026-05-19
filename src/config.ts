@@ -20,8 +20,8 @@ export const SOCIAL_LINKS = {
 export const NAV_LINKS = [
   { href: '/#features', label: 'Features' },
   { href: '/#testimonials', label: 'Testimonials' },
-  { href: '/pricing', label: 'Pricing' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/pricing/', label: 'Pricing' },
+  { href: '/blog/', label: 'Blog' },
 ];
 
 // Footer Links
@@ -30,15 +30,15 @@ export const FOOTER_LINKS = [
     title: 'Product',
     links: [
       { label: 'Features', href: '/#features' },
-      { label: 'Pricing', href: '/pricing' },
-      { label: 'Changelog', href: '/changelog' },
+      { label: 'Pricing', href: '/pricing/' },
+      { label: 'Changelog', href: '/changelog/' },
       { label: 'Integrations', href: '#' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      { label: 'Blog', href: '/blog' },
+      { label: 'Blog', href: '/blog/' },
       { label: 'Documentation', href: '#' },
       { label: 'Community', href: '#' },
       { label: 'Help Center', href: '#' },
@@ -49,8 +49,8 @@ export const FOOTER_LINKS = [
     links: [
       { label: 'About Us', href: '#' },
       { label: 'Contact', href: '#' },
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms of Service', href: '/terms' },
+      { label: 'Privacy Policy', href: '/privacy/' },
+      { label: 'Terms of Service', href: '/terms/' },
     ],
   },
 ];
