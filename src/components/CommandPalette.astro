@@ -4,15 +4,15 @@ import { resolvePath } from '../utils/navigation';
 
 <div
   id="command-palette"
-  class="fixed inset-0 z-[100] hidden overflow-y-auto p-4 sm:p-6 md:p-20"
+  class="fixed inset-0 z-[100] hidden isolate overflow-y-auto p-4 sm:p-6 md:p-20"
   role="dialog"
   aria-modal="true"
 >
   <!-- Backdrop -->
-  <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" aria-hidden="true"></div>
+  <div data-command-backdrop class="fixed inset-0 z-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" aria-hidden="true"></div>
 
   <!-- Palette -->
-  <div class="mx-auto max-w-2xl transform divide-y divide-slate-100 dark:divide-slate-800 overflow-hidden rounded-2xl bg-white dark:bg-slate-900 shadow-2xl ring-1 ring-slate-900/5 transition-all">
+  <div class="relative z-10 mx-auto max-w-2xl transform divide-y divide-slate-100 dark:divide-slate-800 overflow-hidden rounded-2xl bg-white dark:bg-slate-900 shadow-2xl ring-1 ring-slate-900/5 transition-all">
     <div class="relative">
       <svg
         class="pointer-events-none absolute left-4 top-3.5 h-5 w-5 text-slate-400"
@@ -74,16 +74,19 @@ import { resolvePath } from '../utils/navigation';
     const input = document.getElementById('search-input');
     const resultsList = document.getElementById('search-results');
     const helpState = document.getElementById('search-help');
+    const backdrop = palette?.querySelector('[data-command-backdrop]');
+
+    if (!palette || !input || !resultsList || !helpState) return;
     
-    let searchIndex = [];
-    let isLoaded = false;
+    window.__zenixSearchIndex = window.__zenixSearchIndex || [];
+    window.__zenixSearchLoaded = window.__zenixSearchLoaded || false;
 
     async function loadIndex() {
-      if (isLoaded) return;
+      if (window.__zenixSearchLoaded) return;
       try {
         const response = await fetch(`${resolvePath}search-index.json`);
-        searchIndex = await response.json();
-        isLoaded = true;
+        window.__zenixSearchIndex = await response.json();
+        window.__zenixSearchLoaded = true;
       } catch (err) {
         console.error('Failed to load search index:', err);
       }
@@ -102,23 +105,29 @@ import { resolvePath } from '../utils/navigation';
       }
     }
 
-    // Keydown listeners
-    window.addEventListener('keydown', (e) => {
-      // Cmd+K or Ctrl+K
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        togglePalette();
-      }
-      
-      // Escape to close
-      if (e.key === 'Escape' && !palette.classList.contains('hidden')) {
-        togglePalette();
-      }
-    });
+    window.toggleCommandPalette = togglePalette;
+
+    if (!window.__zenixSearchKeyBound) {
+      window.__zenixSearchKeyBound = true;
+      window.addEventListener('keydown', (e) => {
+        const activePalette = document.getElementById('command-palette');
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+          e.preventDefault();
+          window.toggleCommandPalette?.();
+        }
+        
+        if (e.key === 'Escape' && activePalette && !activePalette.classList.contains('hidden')) {
+          window.toggleCommandPalette?.();
+        }
+      });
+    }
+
+    if (palette.dataset.searchBound === 'true') return;
+    palette.dataset.searchBound = 'true';
 
     // Click backdrop to close
     palette.addEventListener('click', (e) => {
-      if (e.target === palette || e.target.classList.contains('bg-slate-900/60')) {
+      if (e.target === palette || e.target === backdrop) {
         togglePalette();
       }
     });
@@ -132,7 +141,7 @@ import { resolvePath } from '../utils/navigation';
         return;
       }
 
-      const matches = searchIndex.filter(item => 
+      const matches = window.__zenixSearchIndex.filter(item => 
         item.title.toLowerCase().includes(query) || 
         item.description.toLowerCase().includes(query)
       );
@@ -155,7 +164,7 @@ import { resolvePath } from '../utils/navigation';
 
       resultsList.innerHTML = matches.map((item, idx) => `
         <li
-          class="group cursor-default select-none rounded-xl p-3 hover:bg-primary-600 dark:hover:bg-primary-500 transition-colors"
+          class="group cursor-pointer select-none rounded-xl p-3 hover:bg-primary-600 dark:hover:bg-primary-500 transition-colors"
           role="option"
           tabindex="-1"
         >
@@ -172,8 +181,6 @@ import { resolvePath } from '../utils/navigation';
       `).join('');
     }
 
-    // Expose toggle globally so Navbar can use it
-    window.toggleCommandPalette = togglePalette;
   }
 
   // Setup on page load and view transition

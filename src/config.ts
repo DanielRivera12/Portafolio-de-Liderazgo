@@ -11,15 +11,15 @@ export const BRAND_LOGO_TEXT = 'Z';
 
 // Social Links
 export const SOCIAL_LINKS = {
-  twitter: 'https://twitter.com/yourhandle',
-  github: 'https://github.com/yourhandle',
+  twitter: 'https://twitter.com/farrosfr_',
+  github: 'https://github.com/farrosfr',
   linkedin: 'https://linkedin.com/in/yourhandle',
 };
 
 // Navigation Links
 export const NAV_LINKS = [
-  { href: '#features', label: 'Features' },
-  { href: '#testimonials', label: 'Testimonials' },
+  { href: '/#features', label: 'Features' },
+  { href: '/#testimonials', label: 'Testimonials' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/blog', label: 'Blog' },
 ];
@@ -29,7 +29,7 @@ export const FOOTER_LINKS = [
   {
     title: 'Product',
     links: [
-      { label: 'Features', href: '#features' },
+      { label: 'Features', href: '/#features' },
       { label: 'Pricing', href: '/pricing' },
       { label: 'Changelog', href: '/changelog' },
       { label: 'Integrations', href: '#' },

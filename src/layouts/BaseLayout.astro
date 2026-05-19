@@ -50,7 +50,7 @@ const { title, description = SITE_DESCRIPTION } = Astro.props;
       window.localStorage.setItem('theme', theme);
     </script>
   </head>
-  <body class="flex flex-col min-h-screen">
+  <body class="flex flex-col min-h-screen bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-[#09090b] dark:text-slate-100">
     <CommandPalette />
     <Navbar />
     <main class="flex-grow">
