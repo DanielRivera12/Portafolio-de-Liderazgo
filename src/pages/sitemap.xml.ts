@@ -9,6 +9,8 @@ type SitemapEntry = {
 
 const staticEntries: SitemapEntry[] = [
   { path: '/' },
+  { path: '/login/' },
+  { path: '/signup/' },
   { path: '/pricing/' },
   { path: '/blog/' },
   { path: '/changelog/' },

@@ -55,6 +55,25 @@ test.describe('theme and navigation regressions', () => {
     await expect(page.locator('header nav a', { hasText: 'Testimonials' })).toHaveAttribute('href', '/#testimonials');
     await expect(page.locator('header nav a', { hasText: 'Pricing' })).toHaveAttribute('href', '/pricing/');
   });
+
+  test('navbar auth actions resolve to existing pages', async ({ page, isMobile }) => {
+    await page.goto('/');
+
+    if (isMobile) {
+      await page.getByRole('button', { name: 'Open main menu' }).click();
+    }
+
+    await expect(page.getByRole('link', { name: 'Sign in' }).filter({ visible: true }).first()).toHaveAttribute('href', '/login/');
+    await expect(page.getByRole('link', { name: 'Get Started' }).filter({ visible: true }).first()).toHaveAttribute('href', '/signup/');
+
+    const login = await page.goto('/login/');
+    expect(login?.status()).toBeLessThan(400);
+    await expect(page.getByRole('heading', { name: 'Sign in' })).toBeVisible();
+
+    const signup = await page.goto('/signup/');
+    expect(signup?.status()).toBeLessThan(400);
+    await expect(page.getByRole('heading', { name: 'Create account' })).toBeVisible();
+  });
 });
 
 test.describe('search modal regressions', () => {
