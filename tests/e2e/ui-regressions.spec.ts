@@ -69,10 +69,14 @@ test.describe('theme and navigation regressions', () => {
     const login = await page.goto('/login/');
     expect(login?.status()).toBeLessThan(400);
     await expect(page.getByRole('heading', { name: 'Sign in' })).toBeVisible();
+    await expect(page.getByText('Demo only. This form does not create a session or send credentials.')).toBeVisible();
+    await expect(page.getByRole('link', { name: 'View GitHub Repo' }).first()).toHaveAttribute('href', 'https://github.com/farrosfr/zenix');
 
     const signup = await page.goto('/signup/');
     expect(signup?.status()).toBeLessThan(400);
     await expect(page.getByRole('heading', { name: 'Create account' })).toBeVisible();
+    await expect(page.getByText('Demo only. Use this as a UI starting point for Supabase, Clerk, Auth.js, or your own backend.')).toBeVisible();
+    await expect(page.getByRole('link', { name: 'View GitHub Repo' }).first()).toHaveAttribute('href', 'https://github.com/farrosfr/zenix');
   });
 });
 

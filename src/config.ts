@@ -4,6 +4,7 @@
 export const SITE_TITLE = 'Zenix';
 export const SITE_DESCRIPTION = 'High-converting, performance-focused Astro theme for Micro-SaaS products.';
 export const SITE_URL = 'https://zenix.farros.co'; // Replace with your domain
+export const REPOSITORY_URL = 'https://github.com/farrosfr/zenix';
 
 // Brand Settings
 export const BRAND_NAME = 'Zenix';
