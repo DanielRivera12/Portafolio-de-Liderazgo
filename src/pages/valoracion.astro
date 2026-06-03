@@ -37,13 +37,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "firebase/firestore";
 
   const firebaseConfig = {
-    apiKey: import.meta.env.FIREBASE_API_KEY,
-    authDomain: import.meta.env.FIREBASE_AUTH_DOMAIN,
-    projectId: import.meta.env.FIREBASE_PROJECT_ID,
-    storageBucket: import.meta.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.FIREBASE_APP_ID,
-    measurementId: import.meta.env.FIREBASE_MEASUREMENT_ID
+    apiKey: "AIzaSyDwrfeqWu3IfyQ3f265VGvNqB4qY5pNYS4",
+    authDomain: "portafolio-12d1c.firebaseapp.com",
+    projectId: "portafolio-12d1c",
+    storageBucket: "portafolio-12d1c.firebasestorage.app",
+    messagingSenderId: "522767182297",
+    appId: "1:522767182297:web:53c076ca6c4a1a886e51c8",
+    measurementId: "G-QKQDCYND48"
   };
 
   const app = initializeApp(firebaseConfig);
