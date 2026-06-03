@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Sobre mí | Daniel Rivera">
+  <section class="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 max-w-6xl">
+    <div class="text-center mb-16">
+      <h1 class="text-5xl font-heading font-bold text-slate-900 dark:text-white mb-4">Sobre mí</h1>
+      <p class="text-xl text-slate-600 dark:text-slate-400">
+        Conociendo mi trayectoria académica, técnica y de crecimiento personal.
+      </p>
+    </div>
+
+    <!-- Tarjeta de Perfil -->
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 md:p-12 shadow-xl mb-16 flex flex-col md:flex-row gap-12 items-center">
+      <div class="w-48 h-48 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden flex-shrink-0 border-4 border-primary-500 shadow-lg">
+        <!-- Aquí puedes poner la ruta de tu foto real en la carpeta public -->
+        <img src="/yo.jpeg" alt="Daniel Rivera" class="w-full h-full object-cover" />
+      </div>
+      
+      <div class="flex-1">
+        <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Daniel Rivera</h2>
+        <p class="text-primary-600 dark:text-primary-400 font-semibold mb-6 flex items-center gap-2">
+          📍 Nebaj, El Quiché / Guatemala | 🎓 UVG Altiplano
+        </p>
+        <div class="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+          <p>
+            Estudiante universitario del quinto semestre (Carné: 242028). Me considero una persona enfocada en el aprendizaje continuo, la resolución de problemas y el crecimiento integral.
+          </p>
+          <p>
+            Durante el curso de <strong>Liderazgo, Resolución de Conflictos y Trabajo en Equipo</strong>, he aprendido la importancia de salir de la zona de confort para entender las dinámicas humanas. He comprendido que saber comunicarme, escuchar activamente y aplicar un buen coaching son herramientas indispensables para lograr mejores resultados y generar un impacto positivo en mi entorno.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Habilidades Desarrolladas -->
+    <div class="text-center mb-12">
+      <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Habilidades Desarrolladas</h3>
+      <p class="text-slate-600 dark:text-slate-400">Competencias fortalecidas durante el curso de Liderazgo</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center hover:-translate-y-2 transition-transform shadow-sm">
+        <div class="w-16 h-16 mx-auto bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center text-3xl mb-4">♟️</div>
+        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Liderazgo</h4>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Capacidad para tomar decisiones técnicas y dirigir equipos.</p>
+      </div>
+      <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center hover:-translate-y-2 transition-transform shadow-sm">
+        <div class="w-16 h-16 mx-auto bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 rounded-2xl flex items-center justify-center text-3xl mb-4">🤝</div>
+        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Trabajo en Equipo</h4>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Colaboración activa para alcanzar objetivos en sprints y entregas.</p>
+      </div>
+      <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center hover:-translate-y-2 transition-transform shadow-sm">
+        <div class="w-16 h-16 mx-auto bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 rounded-2xl flex items-center justify-center text-3xl mb-4">💬</div>
+        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Comunicación</h4>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Transmisión de ideas complejas de forma clara y efectiva.</p>
+      </div>
+      <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 text-center hover:-translate-y-2 transition-transform shadow-sm">
+        <div class="w-16 h-16 mx-auto bg-orange-100 dark:bg-orange-900/50 text-orange-600 dark:text-orange-400 rounded-2xl flex items-center justify-center text-3xl mb-4">🧠</div>
+        <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">Empatía</h4>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Comprensión de las necesidades del usuario y del equipo de trabajo.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

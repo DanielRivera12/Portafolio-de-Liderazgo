@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Mis Evidencias | Daniel Rivera">
+  <section class="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+    <div class="text-center mb-16">
+      <h1 class="text-5xl font-heading font-bold text-slate-900 dark:text-white mb-4">Competencias y Evidencias</h1>
+      <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Análisis de casos, gestión de proyectos técnicos y reflexión sobre el impacto del liderazgo en el desarrollo de software.
+      </p>
+    </div>
+
+    <!-- Grid de Tarjetas -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      
+      <!-- Tarjeta 1: Elon Musk -->
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1">
+        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-2xl mb-6">📉</div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">1. Ley del Suelo Sólido</h3>
+        <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+          Análisis del caso de Elon Musk y Tesla. Evaluación de cómo las declaraciones engañosas y los problemas de calidad impactan la confianza corporativa, y estrategias para restaurar la credibilidad.
+        </p>
+        <a href="/evidencias/14-elon.pdf" target="_blank" class="inline-flex items-center font-semibold text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300">
+          Ver Documento PDF <span>→</span>
+        </a>
+      </div>
+
+      <!-- Tarjeta 2: Ley del Sacrificio en TI -->
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1">
+        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center text-2xl mb-6">⚙️</div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">2. Ley del Sacrificio en TI</h3>
+        <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+          Aplicación del liderazgo en crisis de desarrollo. Cómo un líder técnico debe ceder el protagonismo para resolver problemas de conexión API y empoderar a su equipo.
+        </p>
+        <a href="/evidencias/16-sacrificio.pdf" target="_blank" class="inline-flex items-center font-semibold text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300">
+          Ver Documento PDF <span>→</span>
+        </a>
+      </div>
+
+      <!-- Tarjeta 3: Objetivos SMART y Gantt -->
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1">
+        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center text-2xl mb-6">📊</div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">3. SMART, KPIs y Gantt</h3>
+        <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+          Planificación estratégica de 12 semanas. Definición de conversiones de registro y usuarios activos, y distribución de responsabilidades en Frontend y Backend.
+        </p>
+        <a href="/evidencias/17-gantt.pdf" target="_blank" class="inline-flex items-center font-semibold text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300">
+          Ver Documento PDF <span>→</span>
+        </a>
+      </div>
+
+      <!-- Tarjeta 4: AgroChain 360 -->
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1">
+        <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-xl flex items-center justify-center text-2xl mb-6">🌱</div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">4. Innovación: AgroChain 360</h3>
+        <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+          Uso del modelo GROW para mitigar silos organizacionales. Proyecto de trazabilidad con IoT y Blockchain para transformar la gestión en el sector agroindustrial.
+        </p>
+        <a href="/evidencias/9-innovacion.pdf" target="_blank" class="inline-flex items-center font-semibold text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300">
+          Ver Documento PDF <span>→</span>
+        </a>
+      </div>
+
+    </div>
+    <!-- Botón Siguiente -->
+    <div class="mt-16 text-center">
+      <a href="/reflexion/" class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:scale-105 transition-transform shadow-xl">
+        Siguiente: Leer Reflexión Holística →
+      </a>
+    </div>
+  </section>
+</BaseLayout>
